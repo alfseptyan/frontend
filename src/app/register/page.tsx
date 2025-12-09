@@ -19,8 +19,9 @@ export default function RegisterPage() {
     try {
       await api.post('/auth/register', formData);
       router.push('/login');
-    } catch (error) {
-      alert('Registration failed');
+    } catch (error: any) {
+      const msg = error.response?.data?.error || error.message || 'Registration failed';
+      alert(`Registration Error: ${msg}`);
     }
   };
 
